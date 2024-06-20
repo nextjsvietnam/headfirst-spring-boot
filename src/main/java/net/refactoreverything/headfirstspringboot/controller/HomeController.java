@@ -2,14 +2,22 @@ package net.refactoreverything.headfirstspringboot.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import net.refactoreverything.headfirstspringboot.model.Subcriber;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
+
+    @ModelAttribute("courseName")
+    public String courseName(){
+        return "JavaCore";
+    }
+
     @RequestMapping("/")
     public String home(){
 //        String email = request.getParameter("email");
@@ -32,16 +40,25 @@ public class HomeController {
 //        return "index";
 //    }
 
+//    @RequestMapping("/subcribe")
+//    public ModelAndView subcribe(@RequestParam("email") String email, @RequestParam("name") String name, ModelAndView mv){
+//        if(!email.isEmpty() && !name.isEmpty()){
+//            Subcriber subcriber = new Subcriber();
+//            subcriber.setSubcriberId(1);
+//            subcriber.setSubcriberEmail(email);
+//            subcriber.setSubcriberName(name);
+//            mv.addObject("subcriber", subcriber);
+//        }
+//
+//        mv.setViewName("index");
+//
+//        return mv;
+//    }
+
     @RequestMapping("/subcribe")
-    public ModelAndView subcribe(@RequestParam() String email, @RequestParam() String description, ModelAndView mv){
-        if(!email.isEmpty() && !description.isEmpty()){
-            mv.addObject("email", email);
-            mv.addObject("description", description);
-            mv.addObject("subcribed", true);
-        }
+    public String subcribe(@ModelAttribute() Subcriber subcriber){
 
-        mv.setViewName("index");
-
-        return mv;
+        return "index";
     }
+
 }

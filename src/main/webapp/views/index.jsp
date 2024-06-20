@@ -11,15 +11,17 @@
 <body>
     <div class="container">
         <h1>Hello, world!</h1>
-        <p>${email} - ${description}</p>
+        <p>${subcriber}</p>
+        <p>Course : ${courseName}</p>
         <form method="get" action="/subcribe">
+            <input type="hidden" name="subcriberId" value="1" />
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                <input type="email" name="subcriberEmail" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <label for="name"  class="form-label">Name</label>
+                <input id="name" type="text" name="subcriberName" class="form-control" placeholder="your name" />
             </div>
             <div class="mb-3">
                 <button class="btn btn-primary">Submit</button>
