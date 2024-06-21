@@ -2,6 +2,8 @@ package net.refactoreverything.headfirstspringboot.controller;
 
 import net.refactoreverything.headfirstspringboot.model.Job;
 import net.refactoreverything.headfirstspringboot.model.TechStack;
+import net.refactoreverything.headfirstspringboot.service.JobService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,13 +18,16 @@ import java.util.List;
 @Controller
 public class JobController {
 
+    @Autowired
+    JobService jobService;
+
     @ModelAttribute("job")
     public Job job() {
         return new Job();
     }
 
     @ModelAttribute("techStacks")
-    public List<TechStack> techStacks(){
+    public List<TechStack> techStacks() {
         List<TechStack> techStacks = new ArrayList<>();
         techStacks.add(new TechStack(1, "Java"));
         techStacks.add(new TechStack(2, "PHP"));
@@ -39,17 +44,20 @@ public class JobController {
     }
 
     @GetMapping("/")
-    public String index() {
+    public String index(Model model) {
+        List<Job> jobs = jobService.getAllJobs();
+        model.addAttribute("jobs", jobs);
         return "job/index";
     }
 
     @GetMapping("/new-job")
-    public String newJob(){
+    public String newJob() {
         return "job/new_job";
     }
 
     @PostMapping("/create-job")
-    public String createJob(Job job){
+    public String createJob(Job job) {
+        jobService.createJob(job);
         return "job/detail";
     }
 }
