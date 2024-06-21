@@ -18,7 +18,7 @@ public class HomeController {
         return "JavaCore";
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/home")
     public String home(){
 //        String email = request.getParameter("email");
 //        String description = request.getParameter("description");
