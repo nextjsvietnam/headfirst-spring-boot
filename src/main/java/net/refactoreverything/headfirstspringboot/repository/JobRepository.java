@@ -27,12 +27,43 @@ public class JobRepository {
     }
 
     public Job createJob(Job job) {
-        job.setJobId(jobs.size());
+        job.setJobId(jobs.size() + 1);
         jobs.add(job);
         return job;
     }
 
     public List<Job> getAllJobs() {
         return jobs;
+    }
+
+    public Job findOne(int id) {
+        for (Job job : jobs) {
+            if (job.getJobId() == id) {
+                return job;
+            }
+        }
+        return null;
+    }
+
+    public Job updateOne(Job job) {
+        for (int i = 0; i < jobs.size(); i++) {
+            if (jobs.get(i).getJobId() == job.getJobId()) {
+                jobs.set(i, job);
+            }
+        }
+        return job;
+    }
+
+    public Job deleteOne(int id) {
+        Job removedJob = null;
+        for (Job job : jobs) {
+            if (job.getJobId() == id) {
+                removedJob = job;
+            }
+        }
+        if (removedJob != null) {
+            jobs.remove(removedJob);
+        }
+        return removedJob;
     }
 }

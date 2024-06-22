@@ -19,4 +19,16 @@ public class JobService {
     public List<Job> getAllJobs() {
         return jobRepository.getAllJobs();
     }
+
+    public Job findOne(int id) {
+        return jobRepository.findOne(id);
+    }
+
+    public Job updateOne(Job job) {
+        return jobRepository.updateOne(job);
+    }
+
+    public Job deleteOne(int id) {
+        return jobRepository.deleteOne(id);
+    }
 }
